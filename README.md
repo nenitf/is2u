@@ -7,3 +7,9 @@ My essential installation for development to Ubuntu
 ```bash
 wget -O- http://neni.dev/mei4d2u/lazy.sh | sh
 ```
+
+## Force Update
+```bash
+git fetch --all
+git reset --hard origin/master
+```
