@@ -44,6 +44,9 @@ instalaReq(){
     sudo apt install -y i3 i3blocks # i3
     sudo apt install -y slim # gerenciador de login
     sudo apt install -y firefox
+    sudo apt install -y nitrogen # gerenciador de background
+    cd ~/dev/mei4d2u/images
+    nitrogen --set-auto wallpaper.jpg
 
     # mstaal
     apt-get install -y ubuntu-drivers-common
@@ -59,8 +62,8 @@ cenarioBase(){
 
     instalaReq
 
-    logAcao "INSTALANDO WGET"
-    sudo apt-get install -y wget
+    #logAcao "INSTALANDO WGET"
+    #sudo apt-get install -y wget
 
     logAcao "INSTALANDO CURL"
     sudo apt-get install -y curl
