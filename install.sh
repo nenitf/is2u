@@ -38,25 +38,34 @@ instalaWhiptail(){
     sudo apt-get install -y whiptail
 }
 
+# Sugestões encontradas na internet
 instalaReq(){
-    # dio
-    sudo apt install -y xorg # parte grafica do sistema
-    sudo apt install -y slim # gerenciador de login
+    # Sugestão do DioLinux
+    # parte grafica do sistema
+    sudo apt install -y xorg
+    # gerenciador de login
+    sudo apt install -y slim
+    sudo cp $HOME/dev/mei4d2u/images/harold.jpg /usr/share/slim/themes/debian-lines/background.jpg
     sudo apt install -y firefox
-    sudo apt install -y nitrogen # gerenciador de background
-    nitrogen --set-auto dev/mei4d2u/images/wallpaper.jpg
+    # gerenciador de background
+    sudo apt install -y nitrogen
+    nitrogen --set-auto $HOME/dev/mei4d2u/images/wallpaper.jpg
 
-    # mstaal
+    # Sugestão do mstaal no i3buntu
     sudo apt-get install -y ubuntu-drivers-common
     sudo apt-get install -y libnm-gtk-common
-    sudo apt-get install -y arandr # monitor display
+    # monitor display
+    sudo apt-get install -y arandr
     sudo apt-get install -y pavucontrol pulseaudio-module-x11 # pulseaudio
     sudo apt-get install -y network-manager
     sudo apt-get install network-manager-gnome
-    sudo apt-get install -y wireless-tools # iwconfig
-    sudo apt-get install wicd-gtk # gtk janela de wifi
-    sudo apt-get install -y net-tools # ifconfig
-    sudo apt-get install -y i3 i3-wm i3blocks i3lock i3status
+    # iwconfig
+    sudo apt-get install -y wireless-tools
+    # gtk janela de wifi
+    sudo apt-get install wicd-gtk
+    # ifconfig
+    sudo apt-get install -y net-tools
+    sudo apt-get install -y i3 i3-wm i3blocks
     transmission-gtk
 }
 
@@ -75,8 +84,15 @@ cenarioBase(){
     sudo apt-get install -y rxvt-unicode
 
     logAcao "INSTALANDO NEOVIM"
+    sudo add-apt-repository ppa:neovim-ppa/stable -y
+    sudo apt-get update
     sudo apt-get install -y neovim
     sudo apt-get install -y exuberant-ctags
+
+    logAcao "INSTALANDO RANGER"
+    sudo apt-get install ranger
+    # para ver imagens com a configuração do rc.config
+    ranger --copy-config=scope
 
     logAcao "INSTALANDO ATOM"
     sudo add-apt-repository -y ppa:webupd8team/atom
@@ -92,10 +108,11 @@ cenarioBase(){
     logAcao "INSTALANDO SCROT"
     sudo apt-get install -y scrot
 
-    logAcao "INSTALANDO TEMAS"
-
     logAcao "LINKANDO DOTFILES"
     wget -O - http://neni.dev/dotfiles/lazy.sh | sh
+
+    logAcao "INSTALANDO GIT_FLOW"
+    sudo apt-get install -y git-flow
 }
 
 cenarioJava(){
@@ -129,6 +146,9 @@ cenarioPython3(){
 
     logAcao "INSTALANDO PYTHON3"
     sudo apt-get install -y python3 python3-pip python3-dev cmake
+    sudo apt install -y python3-flask
+    pip3 install flask
+    pip3 install --user pynvim
 }
 
 cenarioGo(){
@@ -196,9 +216,10 @@ cenarioUserExtra(){
 
 # -------------------------- MAIN -------------------------- #
 instalaWhiptail
+cenarioBase
 
 whiptail --title "mei4d2u" --checklist --separate-output \
-    "↓, ↑, <space>, <tab> and <enter> to confirm, programas base serão instalados"\
+    "↓, ↑, <space>, <tab> and <enter> to confirm"\
     20 70 12 \
     "dev-java" "" OFF \
     "dev-node" "" OFF \
@@ -208,9 +229,6 @@ whiptail --title "mei4d2u" --checklist --separate-output \
     "dev-extra" "pandoc, latex, postman e umbrello" OFF \
     "user-extra" "discord, calibre, inkscape e gimp" OFF \
     2>logwhiptail
-
-# teste para ver se o arquivo está vazio
-cenarioBase
 
 # ler e executar cenarios escolhidos
 while read choice
