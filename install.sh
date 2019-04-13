@@ -74,8 +74,8 @@ cenarioBase(){
     logAcao "INSTALANDO URXVT"
     sudo apt-get install -y rxvt-unicode
 
-    logAcao "INSTALANDO VIM"
-    sudo apt-get install -y vim
+    logAcao "INSTALANDO NEOVIM"
+    sudo apt-get install -y neovim
     sudo apt-get install -y exuberant-ctags
 
     logAcao "INSTALANDO ATOM"
