@@ -41,19 +41,22 @@ instalaWhiptail(){
 instalaReq(){
     # dio
     sudo apt install -y xorg # parte grafica do sistema
-    sudo apt install -y i3 i3blocks # i3
     sudo apt install -y slim # gerenciador de login
     sudo apt install -y firefox
     sudo apt install -y nitrogen # gerenciador de background
-    cd ~/dev/mei4d2u/images
-    nitrogen --set-auto wallpaper.jpg
+    nitrogen --set-auto dev/mei4d2u/images/wallpaper.jpg
 
     # mstaal
-    apt-get install -y ubuntu-drivers-common
-    apt-get install -y libnm-gtk-common
-    apt-get install -y arandr # monitor display
-    apt-get install -y pavucontrol pulseaudio-module-x11 # pulseaudio
-    apt-get install -y network-manager wireless-tools
+    sudo apt-get install -y ubuntu-drivers-common
+    sudo apt-get install -y libnm-gtk-common
+    sudo apt-get install -y arandr # monitor display
+    sudo apt-get install -y pavucontrol pulseaudio-module-x11 # pulseaudio
+    sudo apt-get install -y network-manager
+    sudo apt-get install network-manager-gnome
+    sudo apt-get install -y wireless-tools # iwconfig
+    sudo apt-get install wicd-gtk # gtk janela de wifi
+    sudo apt-get install -y net-tools # ifconfig
+    sudo apt-get install -y i3 i3-wm i3blocks i3lock i3status
     transmission-gtk
 }
 
