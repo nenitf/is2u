@@ -18,7 +18,7 @@ README.pdf
 *.synctex.gz
 
 # exclusivo desse projeto
-logwhiptail
+logwhiptail.txt
 
 # python
 __pycache__/

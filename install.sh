@@ -42,7 +42,7 @@ BG_BLUE='\e[44m'
 
 # parametros em shell:
 # https://www.vivaolinux.com.br/topico/Shell-Script/Passando-parametros-entre-funcoes
-informaErro (){
+logErro (){
     printf "${BG_RED}${WHITE}!!!!!!!!!!!!!!!!!!!!!! $1${BG_NC}${NC}\n"
 }
 
@@ -112,6 +112,14 @@ cenarioBase(){
     sudo apt-get update
     sudo apt-get install -y neovim
     sudo apt-get install -y exuberant-ctags
+    # neovim como editor sempre que possivel
+    # https://github.com/neovim/neovim/wiki/Installing-Neovim
+    sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+    sudo update-alternatives --config vi
+    sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+    sudo update-alternatives --config vim
+    sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+    sudo update-alternatives --config editor
 
     logAcao "INSTALANDO RANGER"
     sudo apt-get install ranger
@@ -137,6 +145,16 @@ cenarioBase(){
 
     logAcao "INSTALANDO GIT_FLOW"
     sudo apt-get install -y git-flow
+
+    # docker instalavel somente em x64
+    if [ ${ARQUITETURA} == 'x86_64' ]; then
+        logAcao "INSTALANDO DOCKER"
+        sudo apt-get install -y apt-transport-https ca-certificates gnupg-agent
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
+        sudo apt-get update
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    fi
 }
 
 cenarioJava(){
@@ -169,7 +187,8 @@ cenarioPython3(){
     logCenario "INSTALANDO PYTHON3"
 
     logAcao "INSTALANDO PYTHON3"
-    sudo apt-get install -y python3 python3-pip python3-dev cmake
+    sudo apt-get install python-software-properties
+    sudo apt-get install -y python-dev python-pip python3-dev python3 python3-pip python3-setuptools cmake
     sudo apt install -y python3-flask
     pip3 install flask
     pip3 install --user pynvim
@@ -194,7 +213,7 @@ cenarioDevExtra(){
 
     logAcao "INSTALANDO POSTMAN"
     # dicas postman: http://agiletesters.com.br/topic/1270/automatizando-testes-de-apis-rest-com-postman-e-newman
-    #https://matheuslima.com.br/como-instalar-o-postman-no-ubuntu
+    # https://matheuslima.com.br/como-instalar-o-postman-no-ubuntu
     if [ ${ARQUITETURA} == 'x86_64' ]; then
         # 64-bit stuff here
         wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
@@ -243,7 +262,6 @@ cenarioUserExtra(){
 
 # -------------------------- MAIN -------------------------- #
 instalaWhiptail
-cenarioBase
 
 whiptail --title "mei4d2u" --checklist --separate-output \
     "↓, ↑, <space>, <tab> and <enter> to confirm"\
@@ -255,28 +273,42 @@ whiptail --title "mei4d2u" --checklist --separate-output \
     "dev-go" "" ON \
     "dev-extra" "pandoc, latex, postman e umbrello" OFF \
     "user-extra" "discord, calibre, inkscape e gimp" OFF \
-    2>logwhiptail
+    2>logwhiptail.txt
 
-# ler e executar cenarios escolhidos
-while read choice
-do
-    case $choice in
-        dev-java) cenarioJava
-            ;;
-        dev-node) cenarioNode
-            ;;
-        dev-php) cenarioPHP
-            ;;
-        dev-python3) cenarioPython3
-            ;;
-        dev-go) cenarioGo
-            ;;
-        dev-extra) cenarioDevExtra
-            ;;
-        user-extra) cenarioUserExtra
-            ;;
-    esac
-done < logwhiptail
-logAcao "UPDATE"
-sudo -E apt-get update
+exitstatus=$?
+if [ $exitstatus = 0 ]; then
+    cenarioBase
+
+    # ler e executar cenarios escolhidos
+    while read choice
+    do
+        case $choice in
+            "dev-java")
+                cenarioJava
+                ;;
+            "dev-node")
+                cenarioNode
+                ;;
+            "dev-php")
+                cenarioPHP
+                ;;
+            "dev-python3")
+                cenarioPython3
+                ;;
+            "dev-go")
+                cenarioGo
+                ;;
+            "dev-extra")
+                cenarioDevExtra
+                ;;
+            "user-extra")
+                cenarioUserExtra
+                ;;
+        esac
+    done < logwhiptail.txt
+    logAcao "UPDATE"
+    sudo -E apt-get update
+else
+    logErro "CANCELADO"
+fi
 # ---------------------------------------------------------- #
