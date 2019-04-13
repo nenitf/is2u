@@ -25,12 +25,34 @@
 #   https://www.udemy.com/shell-script-do-basico-ao-profissional/
 # ---------------------------------------------------------- #
 
-# ------------------------- IMPORT ------------------------- #
-source ./config.sh
-# ---------------------------------------------------------- #
+# -------------------------- LOG --------------------------- #
+ARQUITETURA=`uname -m`                  # 64 ou 32
+DISTRO=$(lsb_release -i | cut -f 2-)    # Ubuntu
+INTERFACE_GRAFICA=$XDG_CURRENT_DESKTOP  # LXDE
 
-# ------------------------- TESTES ------------------------- #
+# cores
+# https://misc.flogisoft.com/bash/tip_colors_and_formatting
+NC='\e[39m' # No Color
+WHITE='\e[97m'
 
+BG_NC='\e[49m' # No Color
+BG_RED='\e[41m'
+BG_PURPLE='\e[45m'
+BG_BLUE='\e[44m'
+
+# parametros em shell:
+# https://www.vivaolinux.com.br/topico/Shell-Script/Passando-parametros-entre-funcoes
+informaErro (){
+    printf "${BG_RED}${WHITE}!!!!!!!!!!!!!!!!!!!!!! $1${BG_NC}${NC}\n"
+}
+
+logAcao (){
+    printf "${BG_PURPLE}${WHITE}______________________ $1${BG_NC}${NC}\n"
+}
+
+logCenario (){
+    printf "${BG_BLUE}${WHITE}====================== CENÁRIO $1${BG_NC}${NC}\n"
+}
 # ---------------------------------------------------------- #
 
 # ------------------------- FUNÇÕES ------------------------ #
@@ -45,11 +67,11 @@ instalaReq(){
     sudo apt install -y xorg
     # gerenciador de login
     sudo apt install -y slim
-    sudo cp $HOME/dev/mei4d2u/images/harold.jpg /usr/share/slim/themes/debian-lines/background.jpg
+    sudo cp $HOME/dev/mei4d2u/images/harold.jpg /usr/share/slim/themes/debian-lines/background.png
     sudo apt install -y firefox
     # gerenciador de background
     sudo apt install -y nitrogen
-    sudo nitrogen --set-auto $HOME/dev/mei4d2u/images/wallpaper.jpg
+    sudo nitrogen --set-auto --save $HOME/dev/mei4d2u/images/wallpaper.jpg
 
     # Sugestão do mstaal no i3buntu
     sudo apt-get install -y ubuntu-drivers-common
@@ -257,5 +279,4 @@ do
 done < logwhiptail
 logAcao "UPDATE"
 sudo -E apt-get update
-
 # ---------------------------------------------------------- #
