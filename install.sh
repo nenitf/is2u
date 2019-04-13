@@ -43,6 +43,7 @@ instalaReq(){
     sudo apt install -y xorg # parte grafica do sistema
     sudo apt install -y i3 i3blocks # i3
     sudo apt install -y slim # gerenciador de login
+    sudo apt install -y firefox
 
     # mstaal
     apt-get install -y ubuntu-drivers-common
