@@ -209,10 +209,10 @@ whiptail --title "mei4d2u" --checklist --separate-output \
     "dev-go" "" ON \
     "dev-extra" "pandoc, latex, postman e umbrello" ON \
     "user-extra" "discord, calibre, inkscape e gimp" OFF \
-    2>arquivoResultadosWhiptail
+    2>logwhiptail
 
 # teste para ver se o arquivo está vazio
-if [ -s arquivoResultadosWhiptail ]
+if [ -s logwhiptail ]
 then
     cenarioBase
 
@@ -235,7 +235,7 @@ then
             user-extra) cenarioUserExtra
                 ;;
         esac
-    done < arquivoResultadosWhiptail
+    done < logwhiptail
     logAcao "UPDATE"
     sudo -E apt-get update
 else
