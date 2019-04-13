@@ -49,7 +49,7 @@ instalaReq(){
     sudo apt install -y firefox
     # gerenciador de background
     sudo apt install -y nitrogen
-    nitrogen --set-auto $HOME/dev/mei4d2u/images/wallpaper.jpg
+    sudo nitrogen --set-auto $HOME/dev/mei4d2u/images/wallpaper.jpg
 
     # Sugestão do mstaal no i3buntu
     sudo apt-get install -y ubuntu-drivers-common
@@ -65,12 +65,14 @@ instalaReq(){
     sudo apt-get install wicd-gtk
     # ifconfig
     sudo apt-get install -y net-tools
-    sudo apt-get install -y i3 i3-wm i3blocks
-    transmission-gtk
+    sudo apt-get install -y i3 i3-wm i3blocks i3status
 }
 
 cenarioBase(){
     logCenario "BASE"
+
+    # para poder add ppa
+    sudo apt-get install -y software-properties-common
 
     instalaReq
 
@@ -95,7 +97,7 @@ cenarioBase(){
     ranger --copy-config=scope
 
     logAcao "INSTALANDO ATOM"
-    sudo add-apt-repository -y ppa:webupd8team/atom
+    sudo add-apt-repository ppa:webupd8team/atom -y
     sudo apt-get update
     sudo apt-get install -y atom
 
@@ -201,15 +203,18 @@ cenarioUserExtra(){
     sudo -v && wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()"
 
     logAcao "INSTALANDO INKSCAPE"
-    sudo add-apt-repository ppa:inkscape.dev/stable
+    sudo add-apt-repository ppa:inkscape.dev/stable -y
     sudo apt-get update
-    sudo apt-get install inkscape
+    sudo apt-get install -y inkscape
 
     logAcao "INSTALANDO GIMP"
-    sudo add-apt-repository ppa:otto-kesselgulasch/gimp
+    sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
     sudo apt-get update
-    sudo apt-get install gimp gimp-gmic gmic
-    sudo apt-get install gimp-plugin-registry
+    sudo apt-get install -y gimp gimp-gmic gmic
+    sudo apt-get install -y gimp-plugin-registry
+
+    logAcao "INSTALANDO TRANSMISSION"
+    sudo apt-get install -y transmission-gtk
 }
 
 # ---------------------------------------------------------- #
