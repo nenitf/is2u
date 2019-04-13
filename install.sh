@@ -197,49 +197,42 @@ cenarioUserExtra(){
 # -------------------------- MAIN -------------------------- #
 instalaWhiptail
 
-[ "$1" = "-t" ] && TEST_MODE=true
-
 whiptail --title "mei4d2u" --checklist --separate-output \
-    "↓, ↑, <space>, <tab> and <enter> to confirm"\
+    "↓, ↑, <space>, <tab> and <enter> to confirm, programas base serão instalados"\
     20 70 12 \
     "dev-java" "" OFF \
-    "dev-node" "" ON \
+    "dev-node" "" OFF \
     "dev-php" "" ON \
     "dev-python3" "" ON \
     "dev-go" "" ON \
-    "dev-extra" "pandoc, latex, postman e umbrello" ON \
+    "dev-extra" "pandoc, latex, postman e umbrello" OFF \
     "user-extra" "discord, calibre, inkscape e gimp" OFF \
     2>logwhiptail
 
 # teste para ver se o arquivo está vazio
-if [ -s logwhiptail ]
-then
-    cenarioBase
+cenarioBase
 
-    # ler e executar cenarios escolhidos
-    while read choice
-    do
-        case $choice in
-            dev-java) cenarioJava
-                ;;
-            dev-node) cenarioNode
-                ;;
-            dev-php) cenarioPHP
-                ;;
-            dev-python3) cenarioPython3
-                ;;
-            dev-go) cenarioGo
-                ;;
-            dev-extra) cenarioDevExtra
-                ;;
-            user-extra) cenarioUserExtra
-                ;;
-        esac
-    done < logwhiptail
-    logAcao "UPDATE"
-    sudo -E apt-get update
-else
-    logAcao "CANCELADO"
-fi
+# ler e executar cenarios escolhidos
+while read choice
+do
+    case $choice in
+        dev-java) cenarioJava
+            ;;
+        dev-node) cenarioNode
+            ;;
+        dev-php) cenarioPHP
+            ;;
+        dev-python3) cenarioPython3
+            ;;
+        dev-go) cenarioGo
+            ;;
+        dev-extra) cenarioDevExtra
+            ;;
+        user-extra) cenarioUserExtra
+            ;;
+    esac
+done < logwhiptail
+logAcao "UPDATE"
+sudo -E apt-get update
 
 # ---------------------------------------------------------- #

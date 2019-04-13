@@ -5,8 +5,6 @@
 # ---------------------------------------------------------- #
 
 # ------------------------ VARIÁVEIS ----------------------- #
-TEST_MODE=false                         # testes do script: true -> ./install.sh -t
-
 ARQUITETURA=`uname -m`                  # 64 ou 32
 DISTRO=$(lsb_release -i | cut -f 2-)    # Ubuntu
 INTERFACE_GRAFICA=$XDG_CURRENT_DESKTOP  # LXDE
