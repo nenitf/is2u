@@ -67,11 +67,9 @@ instalaReq(){
     sudo apt install -y xorg
     # gerenciador de login
     sudo apt install -y slim
-    sudo cp $HOME/dev/mei4d2u/images/harold.jpg /usr/share/slim/themes/debian-lines/background.png
+    sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-lines/background.png
+    sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-softwaves/background.png
     sudo apt install -y firefox
-    # gerenciador de background
-    sudo apt install -y nitrogen
-    sudo nitrogen --set-auto --save $HOME/dev/mei4d2u/images/wallpaper.jpg
 
     # Sugestão do mstaal no i3buntu
     sudo apt-get install -y ubuntu-drivers-common
