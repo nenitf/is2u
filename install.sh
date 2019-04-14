@@ -86,6 +86,7 @@ instalaReq(){
     # ifconfig
     sudo apt-get install -y net-tools
     sudo apt-get install -y i3 i3-wm i3blocks i3status
+    sudo apt-get install -y fonts-font-awesome
 }
 
 cenarioBase(){
