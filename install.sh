@@ -114,11 +114,11 @@ cenarioBase(){
     # neovim como editor sempre que possivel
     # https://github.com/neovim/neovim/wiki/Installing-Neovim
     sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-    sudo update-alternatives --config vi
+    sudo update-alternatives --config vi --skip-auto
     sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-    sudo update-alternatives --config vim
+    sudo update-alternatives --config vim --skip-auto
     sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-    sudo update-alternatives --config editor
+    sudo update-alternatives --config editor --skip-auto
 
     logAcao "INSTALANDO RANGER"
     sudo apt-get install ranger
