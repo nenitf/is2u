@@ -69,14 +69,17 @@ instalaReq(){
     sudo apt install -y slim
     sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-lines/background.png
     sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-softwaves/background.png
+    sudo apt install -y nemo
     sudo apt install -y firefox
+    sudo apt install -y qutebrowser
 
     # Sugestão do mstaal no i3buntu
     sudo apt-get install -y ubuntu-drivers-common
     sudo apt-get install -y libnm-gtk-common
     # monitor display
     sudo apt-get install -y arandr
-    sudo apt-get install -y pavucontrol pulseaudio-module-x11 # pulseaudio
+    # pulseaudio
+    sudo apt-get install -y pavucontrol pulseaudio-module-x11 pulseaudio
     sudo apt-get install -y network-manager
     sudo apt-get install network-manager-gnome
     # iwconfig
@@ -86,7 +89,6 @@ instalaReq(){
     # ifconfig
     sudo apt-get install -y net-tools
     sudo apt-get install -y i3 i3-wm i3blocks i3status
-    sudo apt-get install -y fonts-font-awesome
 }
 
 cenarioBase(){
@@ -105,6 +107,9 @@ cenarioBase(){
 
     logAcao "INSTALANDO URXVT"
     sudo apt-get install -y rxvt-unicode
+
+    logAcao "INSTALANDO FONTS"
+    sudo apt-get install -y fonts-font-awesome
 
     logAcao "INSTALANDO NEOVIM"
     sudo add-apt-repository ppa:neovim-ppa/stable -y
