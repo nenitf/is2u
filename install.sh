@@ -91,6 +91,18 @@ instalaReq(){
     sudo apt-get install -y i3 i3-wm i3blocks i3status
 }
 
+suckless(){
+    # st
+sudo apt-get -y install libx11-dev
+sudo apt-get -y install libxft-dev
+
+# dmenu
+
+
+# dwm
+sudo apt-get -y install libxinerama-dev
+}
+
 cenarioBase(){
     logCenario "BASE"
 
@@ -125,10 +137,13 @@ cenarioBase(){
     sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
     sudo update-alternatives --config editor --skip-auto
 
-    logAcao "INSTALANDO RANGER"
-    sudo apt-get install ranger
-    # para ver imagens com a configuração do rc.config
-    ranger --copy-config=scope
+    # logAcao "INSTALANDO RANGER"
+    # sudo apt-get install ranger
+    # # para ver imagens com a configuração do rc.config
+    # ranger --copy-config=scope
+
+    logAcao "INSTALANDO NNN"
+    sudo apt-get install -y nnn
 
     logAcao "INSTALANDO ATOM"
     sudo add-apt-repository ppa:webupd8team/atom -y
