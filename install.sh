@@ -67,7 +67,6 @@ instalaReq(){
     sudo apt install -y slim
     sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-lines/background.png
     sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-softwaves/background.png
-    sudo apt install -y nemo
     sudo apt install -y firefox
     sudo apt install -y qutebrowser
 
@@ -96,19 +95,31 @@ suckless(){
     mkdir -p ~/dev/dotfiles/dmenu
     mkdir -p ~/dev/dotfiles/dwm
 
-    # st
+    # st #
+    # dependencias st
     sudo apt-get -y install libx11-dev
     sudo apt-get -y install libxft-dev
+
     git clone git://git.suckless.org/st ~/dev/dotfiles/suckless/st
-    cd ~/dev/dotfiles/suckless/st
+    cd ~/dev/dotfiles/suckless
+
+    # download dos patches
+    wget https://st.suckless.org/patches/solarized/st-solarized-both-0.8.1.diff
+    cd st
+
+    # inserção dos patches
+    patch -p1 < ../st-solarized-both-0.8.1.diff
+
+    
     sudo make install clean
 
-    # dmenu 
+
+    # dmenu #
     git clone git://git.suckless.org/dmenu ~/dev/dotfiles/suckless/dmenu
     cd ~/dev/dotfiles/suckless/dmenu
     sudo make install clean
 
-    # dwm
+    # dwm #
     sudo apt-get -y install libxinerama-dev
     git clone git://git.suckless.org/dwm ~/dev/dotfiles/dwm
     cd ~/dev/dotfiles/suckless/dwm
