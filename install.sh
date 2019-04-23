@@ -11,15 +11,13 @@
 #   4.4.19
 #
 # Sistema operacional:
-#   Lubuntu 18.10 em:
+#   Ubuntu minimal 18.10 em:
 #   Xubuntu 18.10 em:
 # ---------------------------------------------------------- #
 # Agradecimentos:
 #
 # Repositorio i3buntu:
 #   https://github.com/mstaal/i3buntu
-#
-# DioLinux:
 #
 # Matheus Muller:
 #   https://www.udemy.com/shell-script-do-basico-ao-profissional/
@@ -91,20 +89,41 @@ instalaReq(){
     sudo apt-get install -y i3 i3-wm i3blocks i3status
 }
 
+# Existem programas que necessitam ser compilados manualmente para atualizar os arquivos de customização
 suckless(){
+    mkdir -p ~/dev/dotfiles/suckless
+    mkdir -p ~/dev/dotfiles/st
+    mkdir -p ~/dev/dotfiles/dmenu
+    mkdir -p ~/dev/dotfiles/dwm
+
     # st
-sudo apt-get -y install libx11-dev
-sudo apt-get -y install libxft-dev
+    sudo apt-get -y install libx11-dev
+    sudo apt-get -y install libxft-dev
+    git clone git://git.suckless.org/st ~/dev/dotfiles/suckless/st
+    cd ~/dev/dotfiles/suckless/st
+    sudo make install clean
 
-# dmenu
+    # dmenu 
+    git clone git://git.suckless.org/dmenu ~/dev/dotfiles/suckless/dmenu
+    cd ~/dev/dotfiles/suckless/dmenu
+    sudo make install clean
 
-
-# dwm
-sudo apt-get -y install libxinerama-dev
+    # dwm
+    sudo apt-get -y install libxinerama-dev
+    git clone git://git.suckless.org/dwm ~/dev/dotfiles/dwm
+    cd ~/dev/dotfiles/suckless/dwm
+    sudo make install clean
 }
 
 cenarioBase(){
     logCenario "BASE"
+
+    logAcao "LINKANDO DOTFILES"
+    wget -O - http://neni.dev/dotfiles/lazy.sh | sh
+    echo "alias cs2='cd ~/dev/mps2u'" >> ~/dev/dotfiles/bash/.aliases
+
+    logAcao "COMPILANDO SUCKLESS"
+    suckless
 
     # para poder add ppa
     sudo apt-get install -y software-properties-common
@@ -159,8 +178,6 @@ cenarioBase(){
     logAcao "INSTALANDO SCROT"
     sudo apt-get install -y scrot
 
-    logAcao "LINKANDO DOTFILES"
-    wget -O - http://neni.dev/dotfiles/lazy.sh | sh
 
     logAcao "INSTALANDO GIT_FLOW"
     sudo apt-get install -y git-flow
