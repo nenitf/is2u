@@ -121,7 +121,7 @@ suckless(){
 
     # dwm #
     sudo apt-get -y install libxinerama-dev
-    git clone git://git.suckless.org/dwm ~/dev/dotfiles/dwm
+    git clone git://git.suckless.org/dwm ~/dev/dotfiles/suckless/dwm
     cd ~/dev/dotfiles/suckless/dwm
     sudo make install clean
 }
@@ -131,7 +131,6 @@ cenarioBase(){
 
     logAcao "LINKANDO DOTFILES"
     wget -O - http://neni.dev/dotfiles/lazy.sh | sh
-    echo "alias cs2='cd ~/dev/mps2u'" >> ~/dev/dotfiles/bash/.aliases
 
     logAcao "COMPILANDO SUCKLESS"
     suckless
