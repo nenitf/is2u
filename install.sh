@@ -90,17 +90,18 @@ instalaReq(){
 
 # Existem programas que necessitam ser compilados manualmente para atualizar os arquivos de customização
 suckless(){
-    mkdir -p ~/dev/dotfiles/suckless
-    mkdir -p ~/dev/dotfiles/st
-    mkdir -p ~/dev/dotfiles/dmenu
-    mkdir -p ~/dev/dotfiles/dwm
+    rm -r -f ~/dev/is/suckless
+    mkdir -p ~/dev/is/suckless
+    mkdir -p ~/dev/is/st
+    mkdir -p ~/dev/is/dmenu
+    mkdir -p ~/dev/is/dwm
 
     # st #
     # dependencias st
     sudo apt-get -y install libx11-dev
     sudo apt-get -y install libxft-dev
 
-    git clone git://git.suckless.org/st ~/dev/dotfiles/suckless/st
+    git clone git://git.suckless.org/st ~/dev/is/suckless/st
     cd ~/dev/dotfiles/suckless
 
     # download dos patches
@@ -115,13 +116,13 @@ suckless(){
 
 
     # dmenu #
-    git clone git://git.suckless.org/dmenu ~/dev/dotfiles/suckless/dmenu
+    git clone git://git.suckless.org/dmenu ~/dev/is/suckless/dmenu
     cd ~/dev/dotfiles/suckless/dmenu
     sudo make install clean
 
     # dwm #
     sudo apt-get -y install libxinerama-dev
-    git clone git://git.suckless.org/dwm ~/dev/dotfiles/suckless/dwm
+    git clone git://git.suckless.org/dwm ~/dev/is/suckless/dwm
     cd ~/dev/dotfiles/suckless/dwm
     sudo make install clean
 }

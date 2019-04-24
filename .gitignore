@@ -23,6 +23,9 @@ logwhiptail.txt
 # python
 __pycache__/
 
+# suckless will be cloned...
+suckless
+
 # npm
 .DS_Store
 node_modules

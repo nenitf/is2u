@@ -3,7 +3,7 @@ sudo apt-get install -y git
 cd ~
 mkdir -p dev
 cd dev
-git clone https://github.com/nenitf/mei4d2u.git
-cd mei4d2u
+git clone https://github.com/nenitf/is2u.git is
+cd is
 chmod +x install.sh
 ./install.sh
