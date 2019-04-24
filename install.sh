@@ -23,11 +23,17 @@
 #   https://www.udemy.com/shell-script-do-basico-ao-profissional/
 # ---------------------------------------------------------- #
 
-# -------------------------- LOG --------------------------- #
+# ---------------------- VAR GLOBAIS ----------------------- #
 ARQUITETURA=`uname -m`                  # 64 ou 32
 DISTRO=$(lsb_release -i | cut -f 2-)    # Ubuntu
 INTERFACE_GRAFICA=$XDG_CURRENT_DESKTOP  # LXDE
 
+# Array de instalações a partir de PPA
+# Ver função instalaTodosDePPA
+declare -a ARR_INSTALL_OF_PPA=()
+# ---------------------------------------------------------- #
+
+# -------------------------- LOG --------------------------- #
 # cores
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
 NC='\e[39m' # No Color
@@ -54,6 +60,15 @@ logCenario (){
 # ---------------------------------------------------------- #
 
 # ------------------------- FUNÇÕES ------------------------ #
+# evitar multiplos updates desnecessarios
+instalaTodosDePPA(){
+    sudo apt-get update
+    for i in "${ARR_INSTALL_OF_PPA[@]}"
+    do
+        echo `$i`
+    done
+}
+
 instalaWhiptail(){
     sudo apt-get install -y whiptail
 }
@@ -102,29 +117,31 @@ suckless(){
     sudo apt-get -y install libxft-dev
 
     git clone git://git.suckless.org/st ~/dev/is/suckless/st
-    cd ~/dev/dotfiles/suckless
+    cd ~/dev/is/suckless
 
     # download dos patches
-    wget https://st.suckless.org/patches/solarized/st-solarized-both-0.8.1.diff
+    #wget https://st.suckless.org/patches/solarized/st-solarized-both-0.8.1.diff
     cd st
 
     # inserção dos patches
-    patch -p1 < ../st-solarized-both-0.8.1.diff
+    git apply -3 ../st-solarized-both-0.8.1.diff
 
     
-    sudo make install clean
+    sudo make clean install
 
 
     # dmenu #
     git clone git://git.suckless.org/dmenu ~/dev/is/suckless/dmenu
-    cd ~/dev/dotfiles/suckless/dmenu
-    sudo make install clean
+    cd ~/dev/is/suckless
+    cd dmenu
+    sudo make clean install
 
     # dwm #
     sudo apt-get -y install libxinerama-dev
     git clone git://git.suckless.org/dwm ~/dev/is/suckless/dwm
-    cd ~/dev/dotfiles/suckless/dwm
-    sudo make install clean
+    cd ~/dev/is/suckless
+    cd dwm
+    sudo make clean install
 }
 
 cenarioBase(){
@@ -155,8 +172,9 @@ cenarioBase(){
 
     logAcao "INSTALANDO NEOVIM"
     sudo add-apt-repository ppa:neovim-ppa/stable -y
-    sudo apt-get update
-    sudo apt-get install -y neovim
+    #sudo apt-get update
+    #sudo apt-get install -y neovim
+    ARR_INSTALL_OF_PPA=("sudo apt-get install -y neovim")
     sudo apt-get install -y exuberant-ctags
     # neovim como editor sempre que possivel
     # https://github.com/neovim/neovim/wiki/Installing-Neovim
@@ -166,21 +184,25 @@ cenarioBase(){
     sudo update-alternatives --config vim --skip-auto
     sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
     sudo update-alternatives --config editor --skip-auto
+    cd ~
+    nvim -c PlugInstall -c qall teste.txt
 
-    # logAcao "INSTALANDO RANGER"
-    # sudo apt-get install ranger
-    # # para ver imagens com a configuração do rc.config
-    # ranger --copy-config=scope
+    logAcao "INSTALANDO RANGER"
+    sudo apt-get install ranger
+    # para ver imagens com a configuração do rc.config
+    ranger --copy-config=scope
 
     logAcao "INSTALANDO NNN"
     sudo apt-get install -y nnn
 
     logAcao "INSTALANDO ATOM"
     sudo add-apt-repository ppa:webupd8team/atom -y
-    sudo apt-get update
-    sudo apt-get install -y atom
+    #sudo apt-get update
+    #sudo apt-get install -y atom
+    ARR_INSTALL_OF_PPA=("sudo apt-get install -y atom")
 
     logAcao "INSTALANDO EVINCE"
+    # ver mupdf e zathura!
     sudo apt-get install -y evince evince-common
     # https://www.raspberrypi.org/forums/viewtopic.php?t=196070
     #(evince:14932): dbind-WARNING **: 05:14:44.336: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
@@ -292,14 +314,16 @@ cenarioUserExtra(){
 
     logAcao "INSTALANDO INKSCAPE"
     sudo add-apt-repository ppa:inkscape.dev/stable -y
-    sudo apt-get update
-    sudo apt-get install -y inkscape
+    #sudo apt-get update
+    #sudo apt-get install -y inkscape
+    ARR_INSTALL_OF_PPA=("sudo apt-get install -y inkscape")
 
     logAcao "INSTALANDO GIMP"
     sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
-    sudo apt-get update
-    sudo apt-get install -y gimp gimp-gmic gmic
-    sudo apt-get install -y gimp-plugin-registry
+    #sudo apt-get update
+    #sudo apt-get install -y gimp gimp-gmic gmic
+    #sudo apt-get install -y gimp-plugin-registry
+    ARR_INSTALL_OF_PPA=("sudo apt-get install -y gimp gimp-gmic gmic gimp-plugin-registry")
 
     logAcao "INSTALANDO TRANSMISSION"
     sudo apt-get install -y transmission-gtk
@@ -353,8 +377,12 @@ if [ $exitstatus = 0 ]; then
                 ;;
         esac
     done < logwhiptail.txt
-    logAcao "UPDATE"
+    logAcao "UPDATE / CLEAN"
+    instalaTodosDePPA
     sudo -E apt-get update
+    sudo aptget autoremove
+    sudo apt-get autoclean
+    sudo apt-get clean
 else
     logErro "CANCELADO"
 fi

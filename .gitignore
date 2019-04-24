@@ -24,7 +24,7 @@ logwhiptail.txt
 __pycache__/
 
 # suckless will be cloned...
-suckless
+suckless/
 
 # npm
 .DS_Store
