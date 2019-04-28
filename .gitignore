@@ -23,8 +23,8 @@ logwhiptail.txt
 # python
 __pycache__/
 
-# suckless will be cloned...
-suckless/
+# suckless, nerdfonts etc
+tmp/
 
 # npm
 .DS_Store

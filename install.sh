@@ -12,7 +12,6 @@
 #
 # Sistema operacional:
 #   Ubuntu minimal 18.10 em:
-#   Xubuntu 18.10 em:
 # ---------------------------------------------------------- #
 # Agradecimentos:
 #
@@ -76,90 +75,80 @@ instalaWhiptail(){
 # Sugestões encontradas na internet
 instalaReq(){
     # Sugestão do DioLinux
-    # parte grafica do sistema
-    sudo apt install -y xorg
-    # gerenciador de login
-    sudo apt install -y slim
-    sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-lines/background.png
-    sudo cp $HOME/dev/mei4d2u/images/wallpaper.jpg /usr/share/slim/themes/debian-softwaves/background.png
-    sudo apt install -y firefox
-    sudo apt install -y qutebrowser
 
     # Sugestão do mstaal no i3buntu
     sudo apt-get install -y ubuntu-drivers-common
     sudo apt-get install -y libnm-gtk-common
-    # monitor display
-    sudo apt-get install -y arandr
-    # pulseaudio
-    sudo apt-get install -y pavucontrol pulseaudio-module-x11 pulseaudio
-    sudo apt-get install -y network-manager
-    sudo apt-get install network-manager-gnome
-    # iwconfig
-    sudo apt-get install -y wireless-tools
-    # gtk janela de wifi
-    sudo apt-get install wicd-gtk
-    # ifconfig
-    sudo apt-get install -y net-tools
-    sudo apt-get install -y i3 i3-wm i3blocks i3status
 }
 
 # Existem programas que necessitam ser compilados manualmente para atualizar os arquivos de customização
 suckless(){
-    rm -r -f ~/dev/is/suckless
-    mkdir -p ~/dev/is/suckless
-    mkdir -p ~/dev/is/st
-    mkdir -p ~/dev/is/dmenu
-    mkdir -p ~/dev/is/dwm
+    rm -r -f ~/dev/is/tmp/suckless
+    mkdir -p ~/dev/is/tmp/suckless
 
     # st #
     # dependencias st
     sudo apt-get -y install libx11-dev
     sudo apt-get -y install libxft-dev
 
-    git clone git://git.suckless.org/st ~/dev/is/suckless/st
-    cd ~/dev/is/suckless
-
-    # download dos patches
-    #wget https://st.suckless.org/patches/solarized/st-solarized-both-0.8.1.diff
-    cd st
-
-    # inserção dos patches
-    git apply -3 ../st-solarized-both-0.8.1.diff
-
-    
+    git clone https://github.com/nenitf/st.git ~/dev/is/tmp/suckless/st
+    cd ~/dev/is/tmp/suckless/st
     sudo make clean install
 
-
     # dmenu #
-    git clone git://git.suckless.org/dmenu ~/dev/is/suckless/dmenu
-    cd ~/dev/is/suckless
-    cd dmenu
+    git clone git://git.suckless.org/dmenu ~/dev/is/tmp/suckless/dmenu
+    cd ~/dev/is/tmp/suckless/dmenu
     sudo make clean install
 
     # dwm #
     sudo apt-get -y install libxinerama-dev
-    git clone git://git.suckless.org/dwm ~/dev/is/suckless/dwm
-    cd ~/dev/is/suckless
-    cd dwm
+    git clone https://github.com/nenitf/dwm.git ~/dev/is/tmp/suckless/dwm
+    cd ~/dev/is/tmp/suckless/dwm
     sudo make clean install
 }
 
 cenarioBase(){
     logCenario "BASE"
+    # para poder add ppa
+    sudo apt-get install -y software-properties-common
+
+    # local onde serão clonados repositorios
+    mkdir -p ~/dev/is/tmp
 
     logAcao "LINKANDO DOTFILES"
     wget -O - http://neni.dev/dotfiles/lazy.sh | sh
 
+    logAcao "INSTALANDO CALCURSE"
+    sudo apt-get install -y calcurse
+
     logAcao "COMPILANDO SUCKLESS"
     suckless
 
-    # para poder add ppa
-    sudo apt-get install -y software-properties-common
+    logAcao "INSTALANDO IMAGEMAGICK"
+    sudo apt-get install -y imagemagick
 
     instalaReq
+    logAcao "INSTALANDO PARTE GRÁFICA"
+    sudo apt install -y xorg
 
-    #logAcao "INSTALANDO WGET"
-    #sudo apt-get install -y wget
+    logAcao "INSTALANDO FERRAMENTAS DE CONEXÃO"
+    sudo apt-get install -y network-manager network-manager-gnome
+    # iwconfig
+    sudo apt-get install -y wireless-tools
+    # gtk janela de wifi
+    sudo apt-get install wicd-gtk
+    # ifconfig
+    sudo apt-get install -y net-tools
+
+    logAcao "INSTALANDO FERRAMENTAS DE AUDIO"
+    sudo apt-get install -y pavucontrol pulseaudio-module-x11 pulseaudio
+    sudo apt-get install -y i3 i3-wm i3blocks i3status
+
+    logAcao "INSTALANDO ARANDR PARA MULTIPLOS MONITORES"
+    sudo apt-get install -y arandr
+
+    logAcao "INSTALANDO FEH" 
+    sudo apt-get install -y feh
 
     logAcao "INSTALANDO CURL"
     sudo apt-get install -y curl
@@ -169,6 +158,10 @@ cenarioBase(){
 
     logAcao "INSTALANDO FONTS"
     sudo apt-get install -y fonts-font-awesome
+    cd ~/dev/is/tmp
+    git clone https://github.com/ryanoasis/nerd-fonts.git
+    cd nerd-fonts
+    ./install.sh
 
     logAcao "INSTALANDO NEOVIM"
     sudo add-apt-repository ppa:neovim-ppa/stable -y
@@ -186,6 +179,11 @@ cenarioBase(){
     sudo update-alternatives --config editor --skip-auto
     cd ~
     nvim -c PlugInstall -c qall teste.txt
+
+    logAcao "Instalando browsers"
+    sudo apt install -y firefox
+    sudo apt install -y qutebrowser
+    sudo apt install -y surf
 
     logAcao "INSTALANDO RANGER"
     sudo apt-get install ranger
