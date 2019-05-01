@@ -73,7 +73,7 @@ instalaWhiptail(){
 }
 
 # Sugestões encontradas na internet
-instalaReq(){
+dependenciasASeremEstudadas(){
     # Sugestão do DioLinux
 
     # Sugestão do mstaal no i3buntu
@@ -109,17 +109,26 @@ suckless(){
 
 cenarioBase(){
     logCenario "BASE"
+
     # para poder add ppa
     sudo apt-get install -y software-properties-common
 
+    dependenciasASeremEstudadas
+
     # local onde serão clonados repositorios
-    mkdir -p ~/dev/is/tmp
+    mkdir -p $HOME/dev/is/tmp
 
     logAcao "LINKANDO DOTFILES"
     wget -O - http://neni.dev/dotfiles/lazy.sh | sh
 
+    logAcao "INSTALANDO NITROGEN"
+    sudo apt-get install -y nitrogen
+
     logAcao "INSTALANDO CALCURSE"
     sudo apt-get install -y calcurse
+
+    logAcao "INSTALANDO NEOMUTT"
+    sudo apt-get install -y neomutt
 
     logAcao "COMPILANDO SUCKLESS"
     suckless
@@ -127,22 +136,26 @@ cenarioBase(){
     logAcao "INSTALANDO IMAGEMAGICK"
     sudo apt-get install -y imagemagick
 
-    instalaReq
+    logAcao "INSTALANDO MPV"
+    sudo apt-get install -y mpv
+
     logAcao "INSTALANDO PARTE GRÁFICA"
     sudo apt install -y xorg
+
+    logAcao "INSTALANDO PANDOC"
+    sudo apt-get install -y pandoc
 
     logAcao "INSTALANDO FERRAMENTAS DE CONEXÃO"
     sudo apt-get install -y network-manager network-manager-gnome
     # iwconfig
     sudo apt-get install -y wireless-tools
     # gtk janela de wifi
-    sudo apt-get install wicd-gtk
+    sudo apt-get install -y wicd-gtk
     # ifconfig
     sudo apt-get install -y net-tools
 
     logAcao "INSTALANDO FERRAMENTAS DE AUDIO"
     sudo apt-get install -y pavucontrol pulseaudio-module-x11 pulseaudio
-    sudo apt-get install -y i3 i3-wm i3blocks i3status
 
     logAcao "INSTALANDO ARANDR PARA MULTIPLOS MONITORES"
     sudo apt-get install -y arandr
@@ -158,10 +171,8 @@ cenarioBase(){
 
     logAcao "INSTALANDO FONTS"
     sudo apt-get install -y fonts-font-awesome
-    cd ~/dev/is/tmp
-    git clone https://github.com/ryanoasis/nerd-fonts.git
-    cd nerd-fonts
-    ./install.sh
+    git clone https://github.com/ryanoasis/nerd-fonts.git $HOME/dev/is/tmp/nerd-fonts
+    $HOME/dev/is/tmp/nerd-fonts/install.sh
 
     logAcao "INSTALANDO NEOVIM"
     sudo add-apt-repository ppa:neovim-ppa/stable -y
@@ -177,18 +188,12 @@ cenarioBase(){
     sudo update-alternatives --config vim --skip-auto
     sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
     sudo update-alternatives --config editor --skip-auto
-    cd ~
     nvim -c PlugInstall -c qall teste.txt
 
-    logAcao "Instalando browsers"
+    logAcao "INSTALANDO BROWSERS"
     sudo apt install -y firefox
     sudo apt install -y qutebrowser
     sudo apt install -y surf
-
-    logAcao "INSTALANDO RANGER"
-    sudo apt-get install ranger
-    # para ver imagens com a configuração do rc.config
-    ranger --copy-config=scope
 
     logAcao "INSTALANDO NNN"
     sudo apt-get install -y nnn
@@ -200,11 +205,7 @@ cenarioBase(){
     ARR_INSTALL_OF_PPA=("sudo apt-get install -y atom")
 
     logAcao "INSTALANDO EVINCE"
-    # ver mupdf e zathura!
-    sudo apt-get install -y evince evince-common
-    # https://www.raspberrypi.org/forums/viewtopic.php?t=196070
-    #(evince:14932): dbind-WARNING **: 05:14:44.336: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
-    sudo apt-get install -y at-spi2-core
+    sudo apt-get install -y zathura
 
     logAcao "INSTALANDO SCROT"
     sudo apt-get install -y scrot
@@ -272,25 +273,8 @@ cenarioGo(){
 cenarioDevExtra(){
     logCenario "EXTRA PARA DESENVOLVIMENTO"
 
-    logAcao "INSTALANDO PANDOC"
-    sudo apt-get install -y pandoc
-
     logAcao "INSTALANDO LATEX"
     sudo apt-get install -y texlive-full
-
-    logAcao "INSTALANDO POSTMAN"
-    # dicas postman: http://agiletesters.com.br/topic/1270/automatizando-testes-de-apis-rest-com-postman-e-newman
-    # https://matheuslima.com.br/como-instalar-o-postman-no-ubuntu
-    if [ ${ARQUITETURA} == 'x86_64' ]; then
-        # 64-bit stuff here
-        wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
-    else
-        # 32-bit stuff here
-        wget https://dl.pstmn.io/download/latest/linux32 -O postman.tar.gz
-    fi
-    sudo tar -xzf postman.tar.gz -C /opt
-    rm postman.tar.gz
-    sudo ln -s /opt/Postman/Postman /usr/bin/postman
 
     logAcao "INSTALANDO UMBRELLO"
     sudo apt-get install -y umbrello
