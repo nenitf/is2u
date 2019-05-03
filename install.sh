@@ -121,9 +121,6 @@ cenarioBase(){
     logAcao "LINKANDO DOTFILES"
     wget -O - http://neni.dev/dotfiles/lazy.sh | sh
 
-    logAcao "INSTALANDO NITROGEN"
-    sudo apt-get install -y nitrogen
-
     logAcao "INSTALANDO CALCURSE"
     sudo apt-get install -y calcurse
 
@@ -155,7 +152,7 @@ cenarioBase(){
     sudo apt-get install -y net-tools
 
     logAcao "INSTALANDO FERRAMENTAS DE AUDIO"
-    sudo apt-get install -y pavucontrol pulseaudio-module-x11 pulseaudio
+    sudo apt-get install -y pavucontrol pulseaudio-module-x11 pulseaudio csound-utils
 
     logAcao "INSTALANDO ARANDR PARA MULTIPLOS MONITORES"
     sudo apt-get install -y arandr
