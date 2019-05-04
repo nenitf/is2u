@@ -127,6 +127,9 @@ cenarioBase(){
     logAcao "INSTALANDO NEOMUTT"
     sudo apt-get install -y neomutt
 
+    logAcao "INSTALANDO HTOP"
+    sudo apt-get install -y htop
+
     logAcao "COMPILANDO SUCKLESS"
     suckless
 
