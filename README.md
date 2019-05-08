@@ -1,6 +1,5 @@
 # is2um
 My essential installation for development to Ubuntu Minimal
-* http://neni.dev/is2um
 * [Criar pendrive](https://www.reddit.com/user/nenitfate/comments/bcm30b/criar_pendrive_bootavel_no_ubuntu/)
 
 ## Installation
@@ -13,3 +12,6 @@ wget -O- http://neni.dev/is2um/lazy.sh | sh
 git fetch --all
 git reset --hard origin/master
 ```
+
+## Todo
+[] Get colored emojis
