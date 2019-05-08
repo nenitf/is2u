@@ -85,10 +85,10 @@ install_conectivity(){
     sudo apt-get install -y network-manager network-manager-gnome
     # iwconfig
     sudo apt-get install -y wireless-tools
-    # gtk janela de wifi
-    sudo apt-get install -y wicd-gtk
     # ifconfig
     sudo apt-get install -y net-tools
+    # gtk janela de wifi
+    #sudo apt-get install -y wicd-gtk
 }
 
 install_config_audio(){
@@ -113,7 +113,7 @@ install_urxvt(){
 
 install_all_fonts(){
     git clone https://github.com/ryanoasis/nerd-fonts.git $DIR_INSTALLATION/tmp/nerd-fonts
-    $DIR_INSTALLATION/tmp/nerd-fonts/install.sh
+    .$DIR_INSTALLATION/tmp/nerd-fonts/install.sh
 }
 
 install_nvim(){

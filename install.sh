@@ -227,6 +227,7 @@ if [ $exitstatus = 0 ]; then
     sudo aptget autoremove
     sudo apt-get autoclean
     sudo apt-get clean
+    log_info_action "INSTALAÇÃO TERMINADA!"
 else
     log_warn "CANCELADO"
 fi
