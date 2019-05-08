@@ -26,7 +26,7 @@ DIR_INSTALLATION=$HOME/dev/is
 # ---------------------------------------------------------- #
 
 # ------------------------- FUNÇÕES ------------------------ #
-cenario_base(){
+option_base(){
     log_info_option "BASE"
 
     # para poder add ppa
@@ -108,7 +108,7 @@ cenario_base(){
     install_docker
 }
 
-cenarioJava(){
+option_java(){
     log_info_option "JAVA"
 
     log_info_action "INSTALANDO JDK"
