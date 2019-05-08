@@ -14,4 +14,4 @@ git reset --hard origin/master
 ```
 
 ## Todo
-[] Get colored emojis
+[ ] Get colored emojis
