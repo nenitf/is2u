@@ -24,28 +24,32 @@ install_whiptail(){
     sudo apt-get install -y whiptail
 }
 
+###########################
+# BASE
+###########################
+
 install_suckless(){
-    rm -r -f ~/dev/is/tmp/suckless
-    mkdir -p ~/dev/is/tmp/suckless
+    rm -r -f $DIR_INSTALLATION/tmp/suckless
+    mkdir -p $DIR_INSTALLATION/tmp/suckless
 
     # st #
     # dependencias st
     sudo apt-get -y install libx11-dev
     sudo apt-get -y install libxft-dev
 
-    git clone https://github.com/nenitf/st.git ~/dev/is/tmp/suckless/st
-    cd ~/dev/is/tmp/suckless/st
+    git clone https://github.com/nenitf/st.git $DIR_INSTALLATION/tmp/suckless/st
+    cd $DIR_INSTALLATION/tmp/suckless/st
     sudo make clean install
 
     # dmenu #
-    git clone git://git.suckless.org/dmenu ~/dev/is/tmp/suckless/dmenu
-    cd ~/dev/is/tmp/suckless/dmenu
+    git clone git://git.suckless.org/dmenu $DIR_INSTALLATION/tmp/suckless/dmenu
+    cd $DIR_INSTALLATION/tmp/suckless/dmenu
     sudo make clean install
 
     # dwm #
     sudo apt-get -y install libxinerama-dev
-    git clone https://github.com/nenitf/dwm.git ~/dev/is/tmp/suckless/dwm
-    cd ~/dev/is/tmp/suckless/dwm
+    git clone https://github.com/nenitf/dwm.git $DIR_INSTALLATION/tmp/suckless/dwm
+    cd $DIR_INSTALLATION/tmp/suckless/dwm
     sudo make clean install
 }
 
@@ -143,6 +147,13 @@ install_nnn(){
     sudo apt-get install -y nnn
 }
 
+install_fff(){
+    # sudo apt-get install -y xdotool w3m-img # feh is better!
+    git clone https://github.com/dylanaraps/fff $DIR_INSTALLATION/tmp/fff
+    cd $DIR_INSTALLATION/tmp/fff
+    sudo make install
+}
+
 install_atom(){
     sudo add-apt-repository ppa:webupd8team/atom -y
     #sudo apt-get update
@@ -174,14 +185,29 @@ install_docker(){
     fi
 }
 
+
+###########################
+# JAVA
+###########################
+
 install_jdk(){
     sudo -E apt-get install -y oracle-java8-installer
     sudo -E apt-get install -y oracle-java8-set-default
 }
 
+
+###########################
+# NODE
+###########################
+
 install_node(){
     wget -qO- https://deb.nodesource.com/setup_8.x | sudo -E bash -
 }
+
+
+###########################
+# PHP
+###########################
 
 install_php(){
     sudo apt-get install -y php
@@ -192,6 +218,11 @@ install_composer(){
     curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 }
 
+
+###########################
+# PYTHON
+###########################
+
 install_python3(){
     sudo apt-get install python-software-properties
     sudo apt-get install -y python-dev python-pip python3-dev python3 python3-pip python3-setuptools cmake
@@ -200,10 +231,20 @@ install_python3(){
     pip3 install --user pynvim
 }
 
+
+###########################
+# GO
+###########################
+
 install_go(){
     #sudo add-apt-repository ppa:longsleep/golang-backports
     sudo apt-get install -y golang-go
 }
+
+
+###########################
+# DEV EXTRA
+###########################
 
 install_latex(){
     sudo apt-get install -y texlive-full
@@ -212,6 +253,11 @@ install_latex(){
 install_umbrello(){
     sudo apt-get install -y umbrello
 }
+
+
+###########################
+# USER EXTRA
+###########################
 
 install_discord(){
     #https://www.edivaldobrito.com.br/discord-no-ubuntu-debian-mint/
