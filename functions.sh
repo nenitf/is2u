@@ -75,6 +75,9 @@ install_imagemagick(){
 
 install_mpv(){
     sudo apt-get install -y mpv
+    # youtube dl to play in mpv....
+    sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
 }
 
 install_xorg(){
@@ -162,7 +165,8 @@ install_atom(){
 }
 
 install_zathura(){
-    sudo apt-get install -y zathura
+    # pdf, cbr (comics), post script and djvu
+    sudo apt-get install -y zathura zathura-cb zathura-ps zathura-djvu
 }
 
 install_scrot(){
