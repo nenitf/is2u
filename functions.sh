@@ -20,6 +20,7 @@ install_all_from_ppa(){
     done
 }
 
+# Caixas de dialogo do script
 install_whiptail(){
     sudo apt-get install -y whiptail
 }
@@ -57,10 +58,7 @@ install_dotfiles(){
     wget -O - http://neni.dev/dotfiles/lazy.sh | sh
 }
 
-install_calcurse(){
-    sudo apt-get install -y calcurse
-}
-
+# Mail client
 install_neomutt(){
     sudo apt-get install -y neomutt
 }
@@ -69,10 +67,15 @@ install_htop(){
     sudo apt-get install -y htop
 }
 
+install_unrar(){
+    sudo apt-get install unrar
+}
+
 install_imagemagick(){
     sudo apt-get install -y imagemagick
 }
 
+# Player de vídeo com youtube
 install_mpv(){
     sudo apt-get install -y mpv
     # youtube dl to play in mpv....
@@ -80,14 +83,36 @@ install_mpv(){
 sudo chmod a+rx /usr/local/bin/youtube-dl
 }
 
+# Biblioteca de musicas
+install_cmus(){
+    sudo apt-get install -y cmus
+}
+
+# Editor de tags de musica
+install_id3v2(){
+    sudo apt-get install -y id3v2
+}
+
+# Screen recorder
+install_ffmpeg(){
+    sudo apt-get install -y ffmpeg
+}
+
+# Interpretador de .dot .gv
+install_graphviz(){
+    sudo apt-get install -y graphviz
+}
+
 install_xorg(){
     sudo apt install -y xorg
 }
 
+# Transpilador de markdown para pdf
 install_pandoc(){
     sudo apt-get install -y pandoc
 }
 
+# Uteis para manutenção de rede/internet
 install_conectivity(){
     sudo apt-get install -y network-manager network-manager-gnome
     # iwconfig
@@ -106,6 +131,7 @@ install_arandr(){
     sudo apt-get install -y arandr
 }
 
+# Visualizador de imagens e gerenciador de background
 install_feh(){
     sudo apt-get install -y feh
 }
@@ -114,10 +140,7 @@ install_curl(){
     sudo apt-get install -y curl
 }
 
-install_urxvt(){
-    sudo apt-get install -y rxvt-unicode
-}
-
+# Icones svg no sistena
 install_all_fonts(){
     git clone https://github.com/ryanoasis/nerd-fonts.git $DIR_INSTALLATION/tmp/nerd-fonts
     .$DIR_INSTALLATION/tmp/nerd-fonts/install.sh
@@ -146,10 +169,7 @@ install_browsers(){
     sudo apt install -y surf
 }
 
-install_nnn(){
-    sudo apt-get install -y nnn
-}
-
+# File manager
 install_fff(){
     # sudo apt-get install -y xdotool w3m-img # feh is better!
     git clone https://github.com/dylanaraps/fff $DIR_INSTALLATION/tmp/fff
@@ -167,10 +187,6 @@ install_atom(){
 install_zathura(){
     # pdf, cbr (comics), post script and djvu
     sudo apt-get install -y zathura zathura-cb zathura-ps zathura-djvu
-}
-
-install_scrot(){
-    sudo apt-get install -y scrot
 }
 
 install_git_flow(){

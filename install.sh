@@ -41,9 +41,6 @@ option_base(){
     log_info_action "LINKANDO DOTFILES"
     install_dotfiles
 
-    log_info_action "INSTALANDO CALCURSE"
-    install_calcurse
-
     log_info_action "INSTALANDO NEOMUTT"
     install_neomutt
 
@@ -58,6 +55,18 @@ option_base(){
 
     log_info_action "INSTALANDO MPV"
     install_mpv
+
+    log_info_action "INSTALANDO CMUS"
+    install_cmus
+
+    log_info_action "INSTALANDO ID3V2"
+    install_id3v2
+
+    log_info_action "INSTALANDO FFMPEG"
+    install_ffmpeg
+
+    log_info_action "INSTALANDO GRAPHVIZ"
+    install_graphviz
 
     log_info_action "INSTALANDO XORG"
     install_xorg
@@ -97,9 +106,6 @@ option_base(){
 
     log_info_action "INSTALANDO ZATHURA"
     install_zathura
-
-    log_info_action "INSTALANDO SCROT"
-    install_scrot
 
     log_info_action "INSTALANDO GIT FLOW"
     install_git_flow
