@@ -156,9 +156,6 @@ option_dev_extra(){
 
     log_info_action "INSTALANDO LATEX"
     install_latex
-
-    log_info_action "INSTALANDO UMBRELLO"
-    install_umbrello
 }
 
 option_user_extra(){

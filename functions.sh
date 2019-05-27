@@ -270,10 +270,6 @@ install_latex(){
     sudo apt-get install -y texlive-full
 }
 
-install_umbrello(){
-    sudo apt-get install -y umbrello
-}
-
 
 ###########################
 # USER EXTRA
