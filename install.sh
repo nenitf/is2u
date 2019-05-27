@@ -95,6 +95,12 @@ option_base(){
     log_info_action "INSTALANDO NEOVIM"
     install_nvim
 
+    log_info_action "INSTALANDO TERM-CLIENT GITLAB"
+    install_termlab
+
+    log_info_action "INSTALANDO TERM-CLIENT GITHUB"
+    install_termhub
+
     log_info_action "INSTALANDO BROWSERS"
     install_browsers
 

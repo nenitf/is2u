@@ -80,7 +80,7 @@ install_mpv(){
     sudo apt-get install -y mpv
     # youtube dl to play in mpv....
     sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl
+    sudo chmod a+rx /usr/local/bin/youtube-dl
 }
 
 # Biblioteca de musicas
@@ -163,6 +163,17 @@ install_nvim(){
     nvim -c PlugInstall -c qall teste.txt
 }
 
+install_termlab(){
+    curl -s https://raw.githubusercontent.com/lighttiger2505/lab/master/install.sh | bash
+}
+
+install_termhub(){
+    mkdir -p "$GOPATH"/src/github.com/github
+    git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git "$GOPATH"/src/github.com/github/hub
+    cd "$GOPATH"/src/github.com/github/hub
+    sudo make install prefix=/usr/local
+}
+
 install_browsers(){
     sudo apt install -y firefox
     sudo apt install -y qutebrowser
@@ -201,7 +212,7 @@ install_docker(){
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
         sudo apt-get update
-        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
     fi
 }
 
