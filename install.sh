@@ -104,9 +104,6 @@ option_base(){
     log_info_action "INSTALANDO BROWSERS"
     install_browsers
 
-    log_info_action "INSTALANDO FFF"
-    install_fff
-
     log_info_action "INSTALANDO ATOM"
     install_atom
 
