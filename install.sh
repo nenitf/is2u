@@ -71,6 +71,9 @@ option_base(){
     log_info_action "INSTALANDO XORG"
     install_xorg
 
+    log_info_action "INSTALANDO XCLIP"
+    install_xclip
+
     log_info_action "INSTALANDO PANDOC"
     install_pandoc
 

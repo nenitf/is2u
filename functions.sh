@@ -63,6 +63,10 @@ install_neomutt(){
     sudo apt-get install -y neomutt
 }
 
+install_xclip(){
+    sudo apt-get install -y xclip
+}
+
 install_htop(){
     sudo apt-get install -y htop
 }
