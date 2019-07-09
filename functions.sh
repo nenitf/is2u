@@ -33,6 +33,10 @@ install_suckless(){
     rm -r -f $DIR_INSTALLATION/tmp/suckless
     mkdir -p $DIR_INSTALLATION/tmp/suckless
 
+    sudo apt install -y build-essential				            # gcc, make and other tools for sources compiling
+    sudo apt install -y libx11-dev libxinerama-dev libxft-dev	# Development headers, required for dwm and dmenu building
+    sudo apt install -y libxinerama1   # Xinerama extension for X protocol (multiple screens attached to a single display)
+
     # st #
     # dependencias st
     sudo apt-get -y install libx11-dev
@@ -48,7 +52,8 @@ install_suckless(){
     sudo make clean install
 
     # dwm #
-    sudo apt-get -y install libxinerama-dev
+    #sudo apt-get -y install libxinerama-dev
+    #sudo apt install -y libxft2        # Font drawing library for X
     git clone https://github.com/nenitf/dwm.git $DIR_INSTALLATION/tmp/suckless/dwm
     cd $DIR_INSTALLATION/tmp/suckless/dwm
     sudo make clean install
