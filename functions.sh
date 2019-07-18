@@ -256,6 +256,7 @@ install_php(){
 install_composer(){
     # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-14-04
     curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+    sudo chown -R $USER $HOME/.composer
 }
 
 
