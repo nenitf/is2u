@@ -215,6 +215,7 @@ install_openssh(){
 
 install_git_flow(){
   sudo apt-get install -y git-flow
+  sudo apt-get install -y git-gui
 }
 
 install_docker(){
