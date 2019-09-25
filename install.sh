@@ -95,9 +95,6 @@ option_base(){
   log_info_action "INSTALANDO FONTS"
   install_all_fonts
 
-  log_info_action "INSTALANDO NEOVIM"
-  install_nvim
-
   log_info_action "INSTALANDO TERM-CLIENT GITLAB"
   install_termlab
 

@@ -155,23 +155,6 @@ install_all_fonts(){
   .$DIR_INSTALLATION/tmp/nerd-fonts/install.sh
 }
 
-install_nvim(){
-  sudo add-apt-repository ppa:neovim-ppa/stable -y
-  #sudo apt-get update
-  #sudo apt-get install -y neovim
-  ARR_INSTALL_OF_PPA=("sudo apt-get install -y neovim")
-  sudo apt-get install -y exuberant-ctags
-  # neovim como editor sempre que possivel
-  # https://github.com/neovim/neovim/wiki/Installing-Neovim
-  sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-  sudo update-alternatives --config vi --skip-auto
-  sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-  sudo update-alternatives --config vim --skip-auto
-  sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-  sudo update-alternatives --config editor --skip-auto
-  nvim -c PlugInstall -c qall teste.txt
-}
-
 install_termlab(){
   curl -s https://raw.githubusercontent.com/lighttiger2505/lab/master/install.sh | bash
 }
@@ -274,7 +257,6 @@ install_python3(){
   sudo apt-get install -y python-dev python-pip python3-dev python3 python3-pip python3-setuptools cmake
   sudo apt install -y python3-flask
   pip3 install flask
-  pip3 install --user pynvim
 }
 
 
