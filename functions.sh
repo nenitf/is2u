@@ -209,7 +209,6 @@ install_git_flow(){
 install_docker(){
   # docker instalavel somente em x64
   if [ ${ARQUITETURA} == 'x86_64' ]; then
-    log_info_action "INSTALANDO DOCKER"
     sudo apt-get install -y apt-transport-https ca-certificates gnupg-agent
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
