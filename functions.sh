@@ -57,7 +57,7 @@ install_suckless(){
     git clone https://github.com/nenitf/dwm.git $DIR_INSTALLATION/tmp/suckless/dwm
     cd $DIR_INSTALLATION/tmp/suckless/dwm
     sudo make clean install
-  }
+}
 
 install_dotfiles(){
   wget -O - http://neni.dev/dotfiles/lazy.sh | sh
@@ -114,6 +114,11 @@ install_graphviz(){
 
 install_xorg(){
   sudo apt install -y xorg
+}
+
+install_vim(){
+    sudo apt-get install -y vim
+    sudo apt-get install -y vim-gtk
 }
 
 # Transpilador de markdown para pdf

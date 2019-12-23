@@ -41,26 +41,8 @@ option_base(){
   log_info_action "LINKANDO DOTFILES"
   install_dotfiles
 
-  log_info_action "INSTALANDO NEOMUTT"
-  install_neomutt
-
-  log_info_action "INSTALANDO HTOP"
-  install_htop
-
   log_info_action "COMPILANDO SUCKLESS"
   install_suckless
-
-  log_info_action "INSTALANDO IMAGEMAGICK"
-  install_imagemagick
-
-  log_info_action "INSTALANDO MPV"
-  install_mpv
-
-  log_info_action "INSTALANDO CMUS"
-  install_cmus
-
-  log_info_action "INSTALANDO ID3V2"
-  install_id3v2
 
   log_info_action "INSTALANDO FFMPEG"
   install_ffmpeg
@@ -74,9 +56,6 @@ option_base(){
   log_info_action "INSTALANDO XCLIP"
   install_xclip
 
-  log_info_action "INSTALANDO PANDOC"
-  install_pandoc
-
   log_info_action "INSTALANDO FERRAMENTAS DE CONEXÃO"
   install_conectivity
 
@@ -86,35 +65,17 @@ option_base(){
   log_info_action "INSTALANDO ARANDR PARA MULTIPLOS MONITORES"
   install_arandr
 
+  log_info_action "INSTALANDO VIM" 
+  install_vim
+
   log_info_action "INSTALANDO FEH" 
   install_feh
 
   log_info_action "INSTALANDO CURL"
   install_curl
 
-  log_info_action "INSTALANDO FONTS"
-  install_all_fonts
-
-  log_info_action "INSTALANDO TERM-CLIENT GITLAB"
-  install_termlab
-
-  log_info_action "INSTALANDO TERM-CLIENT GITHUB"
-  install_termhub
-
-  log_info_action "INSTALANDO BROWSERS"
-  install_browsers
-
-  log_info_action "INSTALANDO ATOM"
-  install_atom
-
   log_info_action "INSTALANDO ZATHURA"
   install_zathura
-
-  log_info_action "INSTALANDO GIT FLOW"
-  install_openssh
-
-  log_info_action "INSTALANDO GIT FLOW"
-  install_git_flow
 
   log_info_action "INSTALANDO DOCKER"
   install_docker
@@ -166,12 +127,6 @@ option_dev_extra(){
 
 option_user_extra(){
   log_info_option "CONFIGURAÇÕES CASUAIS EXTRAS"
-
-  log_info_action "INSTALANDO DISCORD"
-  install_discord
-
-  log_info_action "INSTALANDO CALIBRE"
-  install_calibre
 
   log_info_action "INSTALANDO INKSCAPE"
   install_inkscape
