@@ -41,41 +41,14 @@ option_base(){
   log_info_action "LINKANDO DOTFILES"
   install_dotfiles
 
-  log_info_action "COMPILANDO SUCKLESS"
-  install_suckless
-
-  log_info_action "INSTALANDO FFMPEG"
-  install_ffmpeg
-
   log_info_action "INSTALANDO GRAPHVIZ"
   install_graphviz
-
-  log_info_action "INSTALANDO XORG"
-  install_xorg
-
-  log_info_action "INSTALANDO XCLIP"
-  install_xclip
-
-  log_info_action "INSTALANDO FERRAMENTAS DE CONEXÃO"
-  install_conectivity
-
-  log_info_action "INSTALANDO FERRAMENTAS DE AUDIO"
-  install_config_audio
-
-  log_info_action "INSTALANDO ARANDR PARA MULTIPLOS MONITORES"
-  install_arandr
 
   log_info_action "INSTALANDO VIM" 
   install_vim
 
-  log_info_action "INSTALANDO FEH" 
-  install_feh
-
   log_info_action "INSTALANDO CURL"
   install_curl
-
-  log_info_action "INSTALANDO ZATHURA"
-  install_zathura
 
   log_info_action "INSTALANDO DOCKER"
   install_docker
@@ -136,6 +109,15 @@ option_user_extra(){
 
   log_info_action "INSTALANDO TRANSMISSION"
   install_transmission
+
+  log_info_action "INSTALANDO FFMPEG"
+  install_ffmpeg
+
+  log_info_action "INSTALANDO FEH" 
+  install_feh
+
+  log_info_action "INSTALANDO ZATHURA"
+  install_zathura
 }
 # ---------------------------------------------------------- #
 
